@@ -1,0 +1,751 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buy House vs Invest Model</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --panel: rgba(255, 255, 255, 0.78);
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(60, 60, 67, 0.16);
+      --accent: #007aff;
+      --accent-2: #ff9f0a;
+      --blue: #5856d6;
+      --green: #34c759;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 14% 0%, rgba(0, 122, 255, 0.16), transparent 30%),
+        radial-gradient(circle at 92% 6%, rgba(52, 199, 89, 0.12), transparent 24%),
+        linear-gradient(180deg, #fbfbfd 0%, var(--bg) 52%, #f2f2f7 100%);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 18px 42px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .notice {
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 18px;
+      padding: 12px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      backdrop-filter: blur(22px);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 410px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.68);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+    }
+
+    .inputs {
+      position: sticky;
+      top: 16px;
+      overflow: hidden;
+    }
+
+    .panel h2 {
+      margin: 0;
+      padding: 16px 16px 0;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .section {
+      padding: 14px 16px 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-of-type { border-top: 0; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-weight: 700;
+      color: #3a3a3c;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid rgba(60, 60, 67, 0.12);
+      border-radius: 12px;
+      padding: 11px 12px;
+      font-size: 15px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    input:focus {
+      outline: 4px solid rgba(0, 122, 255, 0.16);
+      border-color: var(--accent);
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    button {
+      border: 1px solid rgba(60, 60, 67, 0.14);
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--ink);
+      border-radius: 999px;
+      min-height: 38px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    button:hover {
+      border-color: rgba(0, 122, 255, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .primary-button {
+      width: 100%;
+      margin-top: 10px;
+      color: #fff;
+      border: 0;
+      background: linear-gradient(180deg, #1f8fff 0%, #007aff 100%);
+      box-shadow: 0 10px 22px rgba(0, 122, 255, 0.25);
+    }
+
+    .results {
+      display: grid;
+      gap: 18px;
+    }
+
+    .recommendation {
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 7px 11px;
+      color: #fff;
+      background: var(--green);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .badge.invest { background: var(--blue); }
+    .badge.close { background: var(--accent-2); }
+
+    .big-number {
+      font-size: clamp(30px, 5vw, 52px);
+      font-weight: 850;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+
+    .explain {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 760px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.58);
+      min-height: 94px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .metric strong {
+      font-size: 22px;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .choice {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.58);
+    }
+
+    .choice h3 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .line {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-top: 1px solid var(--line);
+      padding: 10px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .line:first-of-type { border-top: 0; }
+    .line strong { color: var(--ink); text-align: right; }
+
+    .scenario-wrap {
+      padding: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 8px;
+      text-align: right;
+    }
+
+    th:first-child, td:first-child { text-align: left; }
+    th { color: var(--muted); font-weight: 700; }
+
+    .footnotes {
+      padding: 14px 16px 16px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .footnotes a { color: var(--blue); }
+
+    .market-status {
+      margin-top: 10px;
+      border-radius: 14px;
+      background: rgba(242, 242, 247, 0.86);
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      min-height: 50px;
+    }
+
+    .source-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      color: #3a3a3c;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      header, .layout, .compare { grid-template-columns: 1fr; }
+      .inputs { position: static; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      main { padding: 18px 12px 32px; }
+      .grid, .metrics { grid-template-columns: 1fr; }
+      .preset-row { grid-template-columns: 1fr; }
+      th, td { padding: 9px 4px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Buy a house or invest in stocks?</h1>
+        <p class="lede">This model compares the future net worth of buying a home versus investing your available cash. Change the assumptions to match your city, mortgage quote, taxes, rent, and risk tolerance.</p>
+      </div>
+      <div class="notice">Educational tool only. It is not financial, tax, or legal advice. Real mortgage quotes, local housing markets, taxes, insurance, and your personal stability matter a lot.</div>
+    </header>
+
+    <section class="layout">
+      <aside class="panel inputs">
+        <h2>Your Inputs</h2>
+
+        <div class="section">
+          <div class="section-title">Money</div>
+          <div class="grid">
+            <div>
+              <label for="cash">Down payment / investment cash</label>
+              <input id="cash" type="number" value="120000" min="0" step="1000">
+            </div>
+            <div>
+              <label for="horizon">Time horizon, years</label>
+              <input id="horizon" type="number" value="30" min="1" max="40" step="1">
+            </div>
+            <div>
+              <label for="income">Monthly gross income</label>
+              <input id="income" type="number" value="12000" min="0" step="100">
+            </div>
+            <div>
+              <label for="rent">Current monthly rent</label>
+              <input id="rent" type="number" value="3000" min="0" step="50">
+            </div>
+            <div class="full">
+              <label for="emergency">Emergency cash to keep aside</label>
+              <input id="emergency" type="number" value="0" min="0" step="1000">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Home Purchase</div>
+          <div class="grid">
+            <div>
+              <label for="homePrice">Home price</label>
+              <input id="homePrice" type="number" value="600000" min="0" step="5000">
+            </div>
+            <div>
+              <label for="downPct">Down payment %</label>
+              <input id="downPct" type="number" value="20" min="0" max="100" step="0.5">
+            </div>
+            <div>
+              <label for="mortgageRate">Mortgage APR %</label>
+              <input id="mortgageRate" type="number" value="6.29" min="0" step="0.01">
+            </div>
+            <div>
+              <label for="loanYears">Loan term, years</label>
+              <input id="loanYears" type="number" value="30" min="1" max="40" step="1">
+            </div>
+            <div>
+              <label for="closingBuy">Buyer closing costs %</label>
+              <input id="closingBuy" type="number" value="0" min="0" step="0.1">
+            </div>
+            <div>
+              <label for="sellingCost">Selling cost %</label>
+              <input id="sellingCost" type="number" value="6" min="0" step="0.1">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Housing Market</div>
+          <div class="grid">
+            <div>
+              <label for="homeGrowth">Home appreciation %/yr</label>
+              <input id="homeGrowth" type="number" value="3.5" step="0.1">
+            </div>
+            <div>
+              <label for="rentGrowth">Rent inflation %/yr</label>
+              <input id="rentGrowth" type="number" value="3.0" step="0.1">
+            </div>
+            <div>
+              <label for="propertyTax">Property tax %/yr</label>
+              <input id="propertyTax" type="number" value="1.1" min="0" step="0.1">
+            </div>
+            <div>
+              <label for="insurance">Insurance %/yr</label>
+              <input id="insurance" type="number" value="0.45" min="0" step="0.05">
+            </div>
+            <div>
+              <label for="maintenance">Maintenance %/yr</label>
+              <input id="maintenance" type="number" value="1.0" min="0" step="0.1">
+            </div>
+            <div>
+              <label for="hoa">Monthly HOA</label>
+              <input id="hoa" type="number" value="250" min="0" step="25">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Stock Market</div>
+          <div class="grid">
+            <div>
+              <label for="stockReturn">Expected stock return %/yr</label>
+              <input id="stockReturn" type="number" value="7.0" step="0.1">
+            </div>
+            <div>
+              <label for="stockTax">Tax drag %/yr</label>
+              <input id="stockTax" type="number" value="0.4" min="0" step="0.1">
+            </div>
+            <div>
+              <label for="riskBand">Risk band +/- %/yr</label>
+              <input id="riskBand" type="number" value="3.0" min="0" step="0.1">
+            </div>
+            <div>
+              <label for="cashReturn">Cash return %/yr</label>
+              <input id="cashReturn" type="number" value="3.5" step="0.1">
+            </div>
+          </div>
+          <div class="preset-row">
+            <button data-preset="conservative">Conservative</button>
+            <button data-preset="base">Base</button>
+            <button data-preset="growth">Growth</button>
+          </div>
+          <button id="updateMarket" class="primary-button" type="button">Update stock return online</button>
+          <div id="marketStatus" class="market-status">Uses manual stock return until you update. Free source: Yahoo Finance public chart data for SPY, no API key.</div>
+        </div>
+      </aside>
+
+      <section class="results">
+        <article class="panel recommendation">
+          <div id="badge" class="badge">Calculating</div>
+          <div id="headline" class="big-number">$0</div>
+          <p id="summary" class="explain"></p>
+          <div class="metrics">
+            <div class="metric"><span>Buy net worth</span><strong id="buyNet">$0</strong></div>
+            <div class="metric"><span>Invest net worth</span><strong id="investNet">$0</strong></div>
+            <div class="metric"><span>Monthly ownership cost</span><strong id="monthlyOwn">$0</strong></div>
+            <div class="metric"><span>Housing DTI</span><strong id="dti">0%</strong></div>
+          </div>
+        </article>
+
+        <article class="panel compare">
+          <div class="choice">
+            <h3>Buy Home Path</h3>
+            <div class="line"><span>Down payment</span><strong id="downPayment">$0</strong></div>
+            <div class="line"><span>Buyer closing costs</span><strong id="buyerCosts">$0</strong></div>
+            <div class="line"><span>Loan amount</span><strong id="loanAmount">$0</strong></div>
+            <div class="line"><span>Principal + interest</span><strong id="piPayment">$0/mo</strong></div>
+            <div class="line"><span>Home value at sale</span><strong id="futureHome">$0</strong></div>
+            <div class="line"><span>Mortgage balance then</span><strong id="balance">$0</strong></div>
+            <div class="line"><span>Total owner cash paid</span><strong id="ownerCash">$0</strong></div>
+          </div>
+
+          <div class="choice">
+            <h3>Invest Path</h3>
+            <div class="line"><span>Initial stock investment</span><strong id="initialInvest">$0</strong></div>
+            <div class="line"><span>Monthly rent starts at</span><strong id="rentStart">$0/mo</strong></div>
+            <div class="line"><span>Monthly surplus invested</span><strong id="surplus">$0/mo</strong></div>
+            <div class="line"><span>Stock portfolio value</span><strong id="portfolio">$0</strong></div>
+            <div class="line"><span>Total rent paid</span><strong id="totalRent">$0</strong></div>
+            <div class="line"><span>Emergency/cash value</span><strong id="cashValue">$0</strong></div>
+            <div class="line"><span>Break-even gap</span><strong id="gap">$0</strong></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Scenario Stress Test</h2>
+          <div class="scenario-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Scenario</th>
+                  <th>Home growth</th>
+                  <th>Stock return</th>
+                  <th>Buy net</th>
+                  <th>Invest net</th>
+                  <th>Leader</th>
+                </tr>
+              </thead>
+              <tbody id="scenarios"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel footnotes">
+Defaults as of April 30, 2026 use a 30-year fixed mortgage rate around 6.29% from daily mortgage-rate reporting, a stock-return planning assumption below the long-term S&P 500 average, and a national housing appreciation assumption that you should replace with your local market. The online stock updater uses Yahoo Finance public chart data for SPY without an API key; if the free endpoint is blocked, keep using the manual stock-return input. Useful references: <a href="https://fred.stlouisfed.org/series/MORTGAGE30US">FRED/Freddie Mac mortgage series</a>, <a href="https://www.freddiemac.com/pmms">Freddie Mac PMMS</a>, <a href="https://fred.stlouisfed.org/series/CSUSHPINSA">Case-Shiller U.S. National Home Price Index</a>, and <a href="https://www.fidelity.com/learning-center/trading-investing/sp-500-average-return">Fidelity on S&amp;P 500 average returns</a>.
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const ids = [
+      "cash", "horizon", "income", "rent", "emergency", "homePrice", "downPct",
+      "mortgageRate", "loanYears", "closingBuy", "sellingCost", "homeGrowth",
+      "rentGrowth", "propertyTax", "insurance", "maintenance", "hoa",
+      "stockReturn", "stockTax", "riskBand", "cashReturn"
+    ];
+
+    const money = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0
+    });
+
+    const pct = new Intl.NumberFormat("en-US", {
+      style: "percent",
+      maximumFractionDigits: 1
+    });
+
+    function val(id) {
+      return Number(document.getElementById(id).value || 0);
+    }
+
+    function monthlyPayment(principal, annualRate, years) {
+      const months = years * 12;
+      const r = annualRate / 100 / 12;
+      if (principal <= 0) return 0;
+      if (r === 0) return principal / months;
+      return principal * r * Math.pow(1 + r, months) / (Math.pow(1 + r, months) - 1);
+    }
+
+    function mortgageBalance(principal, annualRate, years, monthsPaid) {
+      const totalMonths = years * 12;
+      const r = annualRate / 100 / 12;
+      if (principal <= 0) return 0;
+      if (r === 0) return Math.max(0, principal * (1 - monthsPaid / totalMonths));
+      const payment = monthlyPayment(principal, annualRate, years);
+      const balance = principal * Math.pow(1 + r, monthsPaid) - payment * ((Math.pow(1 + r, monthsPaid) - 1) / r);
+      return Math.max(0, balance);
+    }
+
+    function compoundLump(value, annualRate, years) {
+      return value * Math.pow(1 + annualRate / 100, years);
+    }
+
+    function project(params) {
+      const months = Math.round(params.horizon * 12);
+      const downPayment = params.homePrice * params.downPct / 100;
+      const buyerCosts = params.homePrice * params.closingBuy / 100;
+      const cashNeededToBuy = downPayment + buyerCosts + params.emergency;
+      const canBuy = params.cash >= cashNeededToBuy;
+      const loan = Math.max(0, params.homePrice - downPayment);
+      const pi = monthlyPayment(loan, params.mortgageRate, params.loanYears);
+      let ownerCashPaid = downPayment + buyerCosts;
+      let rentPaid = 0;
+      let investPortfolio = Math.max(0, params.cash - params.emergency);
+      let buySideInvestments = Math.max(0, params.cash - cashNeededToBuy);
+      let rent = params.rent;
+      const stockMonthly = Math.pow(1 + Math.max(-99, params.stockReturn - params.stockTax) / 100, 1 / 12) - 1;
+      const cashMonthly = Math.pow(1 + params.cashReturn / 100, 1 / 12) - 1;
+
+      for (let m = 1; m <= months; m++) {
+        const yearFraction = (m - 1) / 12;
+        const homeValueNow = params.homePrice * Math.pow(1 + params.homeGrowth / 100, yearFraction);
+        const propertyTax = homeValueNow * params.propertyTax / 100 / 12;
+        const insurance = homeValueNow * params.insurance / 100 / 12;
+        const maintenance = homeValueNow * params.maintenance / 100 / 12;
+        const ownershipCost = pi + propertyTax + insurance + maintenance + params.hoa;
+        ownerCashPaid += ownershipCost;
+        rentPaid += rent;
+
+        const surplusIfInvesting = Math.max(0, ownershipCost - rent);
+        const surplusIfBuying = Math.max(0, rent - ownershipCost);
+        investPortfolio = investPortfolio * (1 + stockMonthly) + surplusIfInvesting;
+        buySideInvestments = buySideInvestments * (1 + stockMonthly) + surplusIfBuying;
+
+        if (m % 12 === 0) rent *= (1 + params.rentGrowth / 100);
+      }
+
+      const futureHome = params.homePrice * Math.pow(1 + params.homeGrowth / 100, params.horizon);
+      const balance = mortgageBalance(loan, params.mortgageRate, params.loanYears, months);
+      const saleCosts = futureHome * params.sellingCost / 100;
+      const homeEquityAfterSale = Math.max(0, futureHome - balance - saleCosts);
+      const emergencyFuture = compoundLump(params.emergency, params.cashReturn, params.horizon);
+      const buyNet = canBuy ? homeEquityAfterSale + buySideInvestments + emergencyFuture : -Infinity;
+      const investNet = investPortfolio + emergencyFuture;
+      const firstMonthOwnerCost = pi
+        + params.homePrice * params.propertyTax / 100 / 12
+        + params.homePrice * params.insurance / 100 / 12
+        + params.homePrice * params.maintenance / 100 / 12
+        + params.hoa;
+      const dti = params.income > 0 ? firstMonthOwnerCost / params.income : 0;
+
+      return {
+        canBuy, cashNeededToBuy, downPayment, buyerCosts, loan, pi, futureHome,
+        balance, saleCosts, homeEquityAfterSale, ownerCashPaid, rentPaid,
+        investPortfolio, buySideInvestments, emergencyFuture, buyNet, investNet,
+        firstMonthOwnerCost, dti, surplusIfInvesting: Math.max(0, firstMonthOwnerCost - params.rent)
+      };
+    }
+
+    function readParams(overrides = {}) {
+      const params = Object.fromEntries(ids.map(id => [id, val(id)]));
+      return { ...params, ...overrides };
+    }
+
+    function setText(id, value) {
+      document.getElementById(id).textContent = value;
+    }
+
+    function render() {
+      const params = readParams();
+      const result = project(params);
+      const gap = result.buyNet - result.investNet;
+      const gapAbs = Math.abs(gap);
+      const closeBand = Math.max(15000, Math.min(result.buyNet, result.investNet) * 0.05);
+      const badge = document.getElementById("badge");
+
+      let label = "Too close to call";
+      let badgeClass = "badge close";
+      let summary = "The result is close enough that lifestyle, job stability, local market quality, and risk tolerance should decide more than the spreadsheet.";
+
+      if (!result.canBuy) {
+        label = "Do not buy yet";
+        badgeClass = "badge invest";
+        summary = `You need about ${money.format(result.cashNeededToBuy)} for down payment, closing costs, and emergency cash. With the current inputs, investing/renting is the practical path until cash or home price changes.`;
+      } else if (gap > closeBand) {
+        label = "Buying looks stronger";
+        badgeClass = "badge";
+        summary = `Buying is ahead by about ${money.format(gapAbs)} after ${params.horizon} years, mainly because home equity growth and loan paydown beat the stock/rent path in this scenario.`;
+      } else if (gap < -closeBand) {
+        label = "Investing looks stronger";
+        badgeClass = "badge invest";
+        summary = `Investing is ahead by about ${money.format(gapAbs)} after ${params.horizon} years, mainly because the stock portfolio and flexibility beat home equity in this scenario.`;
+      }
+
+      badge.className = badgeClass;
+      badge.textContent = label;
+      setText("headline", result.canBuy ? `${money.format(gapAbs)} ${gap >= 0 ? "buying edge" : "investing edge"}` : "Cash shortfall");
+      setText("summary", summary);
+      setText("buyNet", result.canBuy ? money.format(result.buyNet) : "Not enough cash");
+      setText("investNet", money.format(result.investNet));
+      setText("monthlyOwn", money.format(result.firstMonthOwnerCost));
+      setText("dti", pct.format(result.dti));
+      setText("downPayment", money.format(result.downPayment));
+      setText("buyerCosts", money.format(result.buyerCosts));
+      setText("loanAmount", money.format(result.loan));
+      setText("piPayment", `${money.format(result.pi)}/mo`);
+      setText("futureHome", money.format(result.futureHome));
+      setText("balance", money.format(result.balance));
+      setText("ownerCash", money.format(result.ownerCashPaid));
+      setText("initialInvest", money.format(Math.max(0, params.cash - params.emergency)));
+      setText("rentStart", `${money.format(params.rent)}/mo`);
+      setText("surplus", `${money.format(result.surplusIfInvesting)}/mo`);
+      setText("portfolio", money.format(result.investPortfolio));
+      setText("totalRent", money.format(result.rentPaid));
+      setText("cashValue", money.format(result.emergencyFuture));
+      setText("gap", result.canBuy ? money.format(gap) : money.format(params.cash - result.cashNeededToBuy));
+
+      renderScenarios(params);
+    }
+
+    function renderScenarios(params) {
+      const band = params.riskBand;
+      const rows = [
+        ["Bad housing / good stocks", params.homeGrowth - 2, params.stockReturn + band],
+        ["Base case", params.homeGrowth, params.stockReturn],
+        ["Good housing / weak stocks", params.homeGrowth + 2, params.stockReturn - band],
+        ["Both weak", params.homeGrowth - 2, params.stockReturn - band],
+        ["Both strong", params.homeGrowth + 2, params.stockReturn + band]
+      ];
+      const body = document.getElementById("scenarios");
+      body.innerHTML = "";
+      rows.forEach(([name, homeGrowth, stockReturn]) => {
+        const r = project(readParams({ homeGrowth, stockReturn }));
+        const leader = !r.canBuy ? "Cash short" : r.buyNet > r.investNet ? "Buy" : "Invest";
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${name}</td>
+          <td>${homeGrowth.toFixed(1)}%</td>
+          <td>${stockReturn.toFixed(1)}%</td>
+          <td>${r.canBuy ? money.format(r.buyNet) : "N/A"}</td>
+          <td>${money.format(r.investNet)}</td>
+          <td><strong>${leader}</strong></td>
+        `;
+        body.appendChild(tr);
+      });
+    }
+
+    ids.forEach(id => document.getElementById(id).addEventListener("input", render));
+
+    document.querySelectorAll("[data-preset]").forEach(button => {
+      button.addEventListener("click", () => {
+        const preset = button.dataset.preset;
+        const values = {
+          conservative: { stockReturn: 5.5, homeGrowth: 2.5, riskBand: 2.5, cashReturn: 3.5 },
+          base: { stockReturn: 7.0, homeGrowth: 3.5, riskBand: 3.0, cashReturn: 3.5 },
+          growth: { stockReturn: 9.0, homeGrowth: 4.5, riskBand: 4.0, cashReturn: 3.0 }
+        }[preset];
+        Object.entries(values).forEach(([id, value]) => {
+          document.getElementById(id).value = value;
+        });
+        render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
+

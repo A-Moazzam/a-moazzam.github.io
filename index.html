@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adrian A. Moazzam | Computational Imaging Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio for Adrian A. Moazzam, a researcher working across computational imaging, turbulence mitigation, Moire sensing, deep learning, optics, and remote sensing."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas class="field-canvas" id="fieldCanvas" aria-hidden="true"></canvas>
+
+    <header class="site-header" data-elevate>
+      <a class="brand" href="index.html" aria-label="Adrian Moazzam home">
+        <span class="brand-mark">AM</span>
+        <span class="brand-copy">Adrian Moazzam</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="research-projects.html">Research &amp; Projects</a>
+        <div class="nav-dropdown">
+          <a class="nav-parent" href="personal-work.html">Personal Work</a>
+          <div class="nav-submenu" aria-label="Personal work pages">
+            <a href="buy-vs-invest.html">Buy vs Invest</a>
+          </div>
+        </div>
+      </nav>
+      <a class="header-action" href="contact.html">Contact</a>
+    </header>
+
+    <main id="top">
+      <section class="identity-hero" aria-label="Website headline">
+        <div class="identity-frame">
+          <h1>Seeing Beyond Distortion</h1>
+        </div>
+        <div class="identity-prompt">
+          <p>Curious about the header of my website?</p>
+          <a class="button secondary" href="research-projects.html#header-story">Learn more about it here</a>
+        </div>
+      </section>
+
+      <section class="hero section-band">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Computational imaging / optics / deep learning</p>
+            <h1 class="hero-title-compact">Reducing noise and distortion in complex optical systems.</h1>
+            <p class="hero-lede">
+              I build imaging and sensing pipelines for turbulent atmospheres, Moire-based
+              displacement measurement, and active optical compensation. My work combines optical
+              physics, machine learning, simulation, and practical software for remote sensing.
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button primary" href="research-projects.html">
+                <span>View selected works</span>
+                <span class="button-icon" aria-hidden="true"></span>
+              </a>
+              <a
+                class="button secondary"
+                href="https://scholar.google.com/citations?user=ncOx3NcAAAAJ&amp;hl=en&amp;oi=ao"
+              >
+                Read publications
+              </a>
+            </div>
+          </div>
+
+          <aside class="signal-panel" aria-label="Research snapshot">
+            <div class="scanline"></div>
+            <div class="signal-header">
+              <span>Research Focus</span>
+              <strong>Optics + AI</strong>
+            </div>
+            <div class="signal-rings" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <dl class="metrics">
+              <div>
+                <dt>Domains</dt>
+                <dd>Imaging, Machine Vision, Data Science</dd>
+              </div>
+              <div>
+                <dt>Toolbox</dt>
+                <dd>Python, MATLAB, Deep Learning, C++, Simulation</dd>
+              </div>
+              <div>
+                <dt>Output</dt>
+                <dd>Research Prototypes, Papers, Code, Teaching</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="intro-strip section-band" aria-label="Portfolio summary">
+        <div class="strip-item">
+          <span>Current lane</span>
+          <strong>Computational imaging</strong>
+        </div>
+        <div class="strip-item">
+          <span>Known for</span>
+          <strong>Turning complex data into meaningful insights</strong>
+        </div>
+        <div class="strip-item">
+          <span>Working style</span>
+          <strong>Physics first, software close behind</strong>
+        </div>
+      </section>
+
+      <section class="section-block" id="work">
+        <div class="section-heading">
+          <p class="eyebrow">Selected works</p>
+          <h2>Projects that move from optics problem to working model.</h2>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card featured">
+            <div class="project-visual paper-gallery selected-work-carousel" data-carousel aria-label="Deep transfer learning image gallery">
+              <img src="assets/project1/1.jpg" alt="Comparison of ACI and deep learning restoration results" />
+              <img src="assets/project1/2.jpg" alt="Optical target restoration snapshot 1" />
+              <img src="assets/project1/3.jpg" alt="NCC loss function comparison chart" />
+              <img src="assets/project1/4.jpg" alt="Optical target restoration snapshot 2" />
+              <img src="assets/project1/5.jpg" alt="Optical target restoration snapshot 3" />
+              <img src="assets/project1/6.jpg" alt="Optical target ground truth snapshot" />
+              <img src="assets/project1/7.jpg" alt="Optical target restoration snapshot 4" />
+            </div>
+            <div class="project-body">
+              <p class="project-kicker">Learning systems</p>
+              <h3>Deep transfer learning for complex beam transmission.</h3>
+              <p>
+                Combining ACI with CNN-based restoration to compare optical compensation, learning
+                methods, and hybrid approaches under atmospheric distortion.
+              </p>
+              <ul class="tag-list" aria-label="Learning systems skills">
+                <li>Active Convolved Illumination</li>
+                <li>Deep Learning</li>
+                <li>Machine Vision</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual paper-gallery selected-work-carousel" data-carousel aria-label="Moire sensing image gallery">
+              <img src="assets/project2/1.jpg" alt="Telescope apparatus setup for Moire sensing" />
+              <img src="assets/project2/2.jpg" alt="Moire apparatus measurement diagram" />
+              <img src="assets/project2/3.jpg" alt="Actuator and Moire apparatus displacement comparison" />
+              <img src="assets/project2/4.jpg" alt="Long-duration displacement signal" />
+              <img src="assets/project2/5.jpg" alt="Telescope and target remote sensing setup" />
+              <img src="assets/project2/6.jpg" alt="Normalized PSD frequency comparison" />
+            </div>
+            <div class="project-body">
+              <p class="project-kicker">Moire sensing</p>
+            <h3>Remote sensing of ground motion with Moire patterns.</h3>
+            <p>
+                Developing non-contact displacement sensing for hazardous or inaccessible
+                environments, including seismic-like motion and field deployment constraints.
+              </p>
+              <ul class="tag-list" aria-label="Moire sensing skills">
+                <li>Optical metrology</li>
+                <li>Signal processing</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual paper-gallery selected-work-carousel" data-carousel aria-label="Active Convolved Illumination image gallery">
+              <img src="assets/project4/1.jpg" alt="ACI turbulent medium wave propagation overview" />
+              <img src="assets/project4/2.jpg" alt="Active Convolved Illumination framework diagram" />
+              <img src="assets/project4/3.jpg" alt="Comparison of beam propagation with and without ACI" />
+            </div>
+            <div class="project-body">
+              <p class="project-kicker">Turbulence mitigation</p>
+              <h3>Active Convolved Illumination for turbulent atmospheres.</h3>
+              <p>
+                Research on optical compensation methods that improve light transmission through
+                turbulent media, including coherent beam propagation and remote sensing imagery.
+              </p>
+              <ul class="tag-list" aria-label="Turbulence mitigation skills">
+                <li>Active Convolved Illumination</li>
+                <li>Model-Based Analysis</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+        <div class="selected-work-action">
+          <a class="button primary" href="research-projects.html">
+            <span>Check out all my works</span>
+            <span class="button-icon" aria-hidden="true"></span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section-block split-section" id="method">
+        <div class="section-heading sticky-heading">
+          <p class="eyebrow">Method</p>
+          <h2>A research practice built around clarity under distortion.</h2>
+          <p>
+            The work starts with what the physics says the camera should see, then builds a
+            computational pipeline around it and leverages machine learning for further enhancement.
+          </p>
+        </div>
+
+        <div class="method-list">
+          <article>
+            <span>01</span>
+            <h3>Frame the optical constraint</h3>
+            <p>
+              Translate the physical scene, sensor behavior, and degradation model into an
+              experiment that can be tested rather than only described.
+            </p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Prototype the recovery path</h3>
+            <p>
+              Build simulations, data transforms, and learning loops that expose which assumptions
+              survive contact with real imagery.
+            </p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Measure what changed</h3>
+            <p>
+              Evaluate restoration, alignment, or sensing performance with metrics that match the
+              scientific question and the downstream user.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-band experience-band" id="career">
+        <div class="section-heading">
+          <p class="eyebrow">Experience</p>
+          <h2>Research, teaching, and technical execution.</h2>
+        </div>
+        <div class="timeline">
+          <article>
+            <time>Research</time>
+            <h3>Computational imaging and optics</h3>
+            <p>
+              Work spanning active optical compensation, atmospheric turbulence mitigation,
+              Moire-based sensing, image analysis, and deep-learning workflows.
+            </p>
+          </article>
+          <article>
+            <time>Software</time>
+            <h3>Scientific prototyping</h3>
+            <p>
+              Practical implementation in Python, MATLAB, C++, SQL, PyTorch, TensorFlow, COMSOL,
+              numerical simulation, data preparation, model evaluation, and visual reporting.
+            </p>
+          </article>
+          <article>
+            <time>Teaching</time>
+            <h3>Mentorship and instruction</h3>
+            <p>
+              Presenting optics, photonics, and imaging concepts through talks, demonstrations, and
+              student-facing technical guidance. Served as a graduate instructor for Electrical
+              Engineering courses and taught laboratory sections with more than 300 students.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block" id="writing">
+        <div class="section-heading">
+          <p class="eyebrow">Publications</p>
+          <h2>Signals from the lab notebook.</h2>
+        </div>
+        <div class="publication-layout">
+          <article class="publication-card">
+            <h3>Active Convolved Illumination with Deep Transfer Learning for Complex Beam Transmission through Atmospheric Turbulence</h3>
+            <p>
+              Journal of Electronic Imaging, 2026. A hybrid optical and deep-learning approach for
+              improving complex beam transmission through atmospheric turbulence.
+            </p>
+          </article>
+          <article class="publication-card">
+            <h3>Remote Sensing of Dynamic Ground Motion via a Moire-Based Apparatus</h3>
+            <p>
+              Remote Sensing, 2026. A long-range, non-contact optical apparatus for measuring
+              dynamic and seismic-like ground displacement.
+            </p>
+          </article>
+          <article class="publication-card">
+            <h3>Remote Sensing of Seismic Signals via Enhanced Moire-Based Apparatus Integrated with ACI</h3>
+            <p>
+              Remote Sensing, 2025. ACI-enhanced Moire sensing for remote displacement monitoring in
+              challenging environments.
+            </p>
+          </article>
+          <article class="publication-card quiet">
+            <h3>Enhancing Complex Light Beam Propagation in Turbulent Atmosphere with ACI</h3>
+            <p>
+              ACS Photonics, 2024. A framework for improving coherent light transmission through a
+              turbulent atmosphere.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section section-band" id="contact">
+        <div>
+          <p class="eyebrow">Get in touch</p>
+          <h2>Have a hard imaging problem or a research collaboration in mind?</h2>
+        </div>
+        <a class="button primary light" href="contact.html">
+          <span>Start a conversation</span>
+          <span class="button-icon" aria-hidden="true"></span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-topline">
+        <span>amoazzam.com</span>
+        <a href="index.html#top">Back to top</a>
+      </div>
+      <div class="social-links" aria-label="Social links">
+        <a href="https://www.linkedin.com/in/amoazzam/" aria-label="LinkedIn">
+          <span class="social-icon linkedin" aria-hidden="true">in</span>
+        </a>
+        <a href="https://github.com/A-Moazzam" aria-label="GitHub">
+          <span class="social-icon github" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M12 2C6.48 2 2 6.58 2 12.24c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.5v-1.9c-2.78.62-3.37-1.22-3.37-1.22-.45-1.2-1.1-1.52-1.1-1.52-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.56 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.9c.85 0 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.95.68 1.91v2.83c0 .28.18.6.69.5A10.13 10.13 0 0 0 22 12.24C22 6.58 17.52 2 12 2Z" />
+            </svg>
+          </span>
+        </a>
+        <a href="https://www.researchgate.net/profile/Adrian-Moazzam/research" aria-label="ResearchGate">
+          <span class="social-icon image-icon" aria-hidden="true">
+            <img src="assets/researchgate.png" alt="" />
+          </span>
+        </a>
+        <a href="https://scholar.google.com/citations?user=ncOx3NcAAAAJ&amp;hl=en&amp;oi=ao" aria-label="Google Scholar">
+          <span class="social-icon image-icon" aria-hidden="true">
+            <img src="assets/google-scholar.png" alt="" />
+          </span>
+        </a>
+      </div>
+      <p class="copyright">
+        © Copyright Amoazzam | ALL RIGHTS RESERVED BY Adrian Moazzam | contact@amoazzam.com
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

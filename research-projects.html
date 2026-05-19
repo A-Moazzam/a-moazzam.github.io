@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research & Projects | Adrian A. Moazzam</title>
+    <meta
+      name="description"
+      content="Research and projects by Adrian A. Moazzam in computational imaging, optics, turbulence mitigation, Moire sensing, and deep learning."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas class="field-canvas" id="fieldCanvas" aria-hidden="true"></canvas>
+
+    <header class="site-header" data-elevate>
+      <a class="brand" href="index.html" aria-label="Adrian Moazzam home">
+        <span class="brand-mark">AM</span>
+        <span class="brand-copy">Adrian Moazzam</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="research-projects.html" aria-current="page">Research &amp; Projects</a>
+        <div class="nav-dropdown">
+          <a class="nav-parent" href="personal-work.html">Personal Work</a>
+          <div class="nav-submenu" aria-label="Personal work pages">
+            <a href="buy-vs-invest.html">Buy vs Invest</a>
+          </div>
+        </div>
+      </nav>
+      <a class="header-action" href="contact.html">Contact</a>
+    </header>
+
+    <main class="page-main">
+      <section class="page-hero section-band">
+        <p class="eyebrow">Research &amp; Projects</p>
+        <h1>Projects that connect optics, image processing, and machine learning.</h1>
+        <p class="hero-lede">
+          Improving machine vision and machine learning performance by integrating optics, image
+          processing, and optical solutions for turbulence mitigation and Moire-based remote
+          sensing.
+        </p>
+      </section>
+
+      <section class="header-explainer section-block" id="header-story" aria-label="Website header explanation">
+        <div class="header-image-panel" aria-label="Cropped atmospheric turbulence header video"></div>
+        <div class="header-story">
+          <p class="story-kicker">💡 Curious about the header of my website?</p>
+          <h2>✅ In short, it is all about my research.</h2>
+          <p>
+            When light travels through the atmosphere, a turbulent medium, it gets distorted. This
+            creates effects such as warping, flickering, scintillation, blurring, beam wandering,
+            and what is often called image dancing.
+          </p>
+          <p>
+            A simple way to picture this is to look at stars at night: their twinkling comes from
+            atmospheric turbulence affecting the light before it reaches our eyes. You can see a
+            similar effect above a hot road on a summer day, where the air seems to ripple.
+          </p>
+          <p>
+            In theory, larger telescopes should let us see smaller and farther objects more clearly.
+            In practice, atmospheric distortion limits that advantage. This is one reason space
+            telescopes such as the James Webb Space Telescope are placed above the atmosphere rather
+            than built only as larger instruments on Earth.
+          </p>
+          <p>
+            The header video on this website was captured through a telescope and shows two cars
+            more than 550 meters away. Within a few seconds, the image visibly dances, loses
+            contrast, and bends geometrically. These distortions are not uniform; different regions
+            of the frame shift in different ways.
+          </p>
+          <p>
+            My research focuses on this challenge by combining optical techniques, image processing,
+            and deep learning to improve remote sensing images and make long-distance observations
+            clearer and more reliable.
+          </p>
+        </div>
+      </section>
+
+      <section class="research-divider section-band" aria-label="Doctoral research">
+        <p class="eyebrow">Research focus</p>
+        <h2>DOCTORAL RESEARCH</h2>
+      </section>
+
+      <section class="doctoral-projects section-block" aria-label="Doctoral research projects">
+        <article class="paper-card featured-paper">
+          <div class="paper-image paper-gallery" data-carousel aria-label="Project 1 image gallery">
+            <img src="assets/project1/1.jpg" alt="Project 1 comparison of ACI and deep learning restoration results" />
+            <img src="assets/project1/2.jpg" alt="Project 1 optical target restoration snapshot 1" />
+            <img src="assets/project1/3.jpg" alt="Project 1 NCC loss function comparison chart" />
+            <img src="assets/project1/4.jpg" alt="Project 1 optical target restoration snapshot 2" />
+            <img src="assets/project1/5.jpg" alt="Project 1 optical target restoration snapshot 3" />
+            <img src="assets/project1/6.jpg" alt="Project 1 optical target ground truth snapshot" />
+            <img src="assets/project1/7.jpg" alt="Project 1 optical target restoration snapshot 4" />
+          </div>
+          <div class="paper-copy">
+            <p class="project-kicker">Turbulence mitigation / deep learning</p>
+            <h3>
+              Active Convolved Illumination with Deep Transfer Learning for Complex Beam
+              Transmission through Atmospheric Turbulence
+            </h3>
+            <p>
+              Atmospheric turbulence distorts optical wave propagation and limits imaging and remote
+              sensing. This project combines Active Convolved Illumination with a deep-learning
+              restoration model, using CNN-based adaptation and turbulence simulations to compare
+              optical compensation, learning-based correction, and their hybrid use.
+            </p>
+            <p>
+              The results show that integrating ACI with deep learning improves image fidelity
+              beyond standalone methods, pointing toward scalable turbulence correction for imaging
+              and remote sensing.
+            </p>
+            <div class="paper-actions">
+              <a class="button secondary" href="https://github.com/A-Moazzam">Code</a>
+              <a
+                class="button primary"
+                href="https://www.spiedigitallibrary.org/journals/journal-of-electronic-imaging/volume-35/issue-3/033005/Active-convolved-illumination-with-deep-transfer-learning-for-complex-beam/10.1117/1.JEI.35.3.033005.short"
+              >
+                Paper
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <div class="paper-cluster">
+          <div class="cluster-heading">
+            <h3>Moire sensing and remote ground-motion measurement</h3>
+          </div>
+          <div class="paper-grid">
+            <article class="paper-card">
+              <div class="paper-image paper-gallery" data-carousel aria-label="Project 2 image gallery">
+                <img src="assets/project2/1.jpg" alt="Project 2 telescope apparatus setup" />
+                <img src="assets/project2/2.jpg" alt="Project 2 Moire apparatus measurement diagram" />
+                <img src="assets/project2/3.jpg" alt="Project 2 actuator and Moire apparatus displacement comparison" />
+                <img src="assets/project2/4.jpg" alt="Project 2 long-duration displacement signal" />
+                <img src="assets/project2/5.jpg" alt="Project 2 telescope and target remote sensing setup" />
+                <img src="assets/project2/6.jpg" alt="Project 2 normalized PSD frequency comparison" />
+              </div>
+              <div class="paper-copy">
+                <p class="project-kicker">Moire sensing</p>
+                <h3>Remote sensing of dynamic ground motion via a Moire-based apparatus</h3>
+                <p>
+                  This work uses the displacement-magnifying properties of Moire patterns to detect
+                  subtle ground motion in hard-to-access environments such as active volcanic
+                  regions.
+                </p>
+                <p>
+                  It presents the apparatus design, remote sensing setup, implementation limits, and
+                  applications in volcanology, geophysics, structural analysis, and metrology.
+                </p>
+                <div class="paper-actions">
+                  <a class="button secondary" href="https://zenodo.org/records/18793561">Code</a>
+                  <a class="button primary" href="https://www.mdpi.com/2072-4292/18/5/718">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper-card">
+              <div class="paper-image paper-gallery" data-carousel aria-label="Project 3 image gallery">
+                <img src="assets/project3/1.jpg" alt="Project 3 enhanced Moire apparatus concept diagram" />
+                <img src="assets/project3/2.jpg" alt="Project 3 ACI-enhanced Moire sensing comparison" />
+                <img src="assets/project3/3.jpg" alt="Project 3 remote seismic sensing illustration" />
+              </div>
+              <div class="paper-copy">
+                <p class="project-kicker">Moire sensing / ACI</p>
+                <h3>
+                  Remote Sensing of Seismic Signals via Enhanced Moire-Based Apparatus Integrated
+                  with Active Convolved Illumination
+                </h3>
+                <p>
+                  Seismic monitoring in hazardous environments is difficult because accessibility is
+                  limited and atmospheric turbulence can distort remote measurements.
+                </p>
+                <p>
+                  This project integrates ACI with a Moire-based apparatus to improve high-precision,
+                  non-invasive, and scalable sensing of subtle ground displacement.
+                </p>
+                <div class="paper-actions">
+                  <a class="button secondary" href="https://zenodo.org/records/14674745">Code</a>
+                  <a class="button primary" href="https://www.mdpi.com/2072-4292/17/12/2032">Paper</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="paper-cluster">
+          <div class="cluster-heading">
+            <h3>Atmospheric turbulence, optical propagation, and simulation</h3>
+          </div>
+          <div class="paper-grid">
+            <article class="paper-card">
+              <div class="paper-image paper-gallery" data-carousel aria-label="Project 4 image gallery">
+                <img src="assets/project4/1.jpg" alt="Project 4 ACI turbulent medium wave propagation overview" />
+                <img src="assets/project4/2.jpg" alt="Project 4 Active Convolved Illumination framework diagram" />
+                <img src="assets/project4/3.jpg" alt="Project 4 comparison of beam propagation with and without ACI" />
+              </div>
+              <div class="paper-copy">
+                <p class="project-kicker">Active optical compensation</p>
+                <h3>
+                  Enhancing Complex Light Beam Propagation in Turbulent Atmosphere with Active
+                  Convolved Illumination
+                </h3>
+                <p>
+                  This work applies ACI to coherent light transmission through turbulent atmosphere,
+                  using an auxiliary source correlated with the target signal to counteract
+                  distortion and improve information transport.
+                </p>
+                <p>
+                  The framework demonstrates up to a 20-fold resolution enhancement under moderate
+                  anisoplanatic conditions, with possible extensions to dynamic turbulence and
+                  scattering compensation.
+                </p>
+                <div class="paper-actions">
+                  <a class="button secondary" href="https://zenodo.org/records/14674745">Code</a>
+                  <a class="button primary" href="https://pubs.acs.org/doi/abs/10.1021/acsphotonics.4c00687">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="paper-card">
+              <div class="paper-image paper-gallery" data-carousel aria-label="Project 5 image gallery">
+                <img src="assets/project5/1.jpg" alt="Project 5 refractive index structure parameter distribution with altitude" />
+                <img src="assets/project5/2.jpg" alt="Project 5 simulated turbulence phase screen" />
+                <img src="assets/project5/3.jpg" alt="Project 5 atmospheric propagation simulation planes diagram" />
+              </div>
+              <div class="paper-copy">
+                <p class="project-kicker">Atmospheric simulation</p>
+                <h3>A common method for simulating turbulent atmosphere for optical imaging</h3>
+                <p>
+                  This project develops a practical framework for simulating atmospheric turbulence
+                  in optical imaging systems, including propagation paths, refractive-index
+                  structure parameters, phase spectra, finite simulation planes, and sampling.
+                </p>
+                <p>
+                  It serves as a foundation for modeling turbulence-induced distortions and testing
+                  imaging methods over long horizontal paths.
+                </p>
+                <div class="paper-actions">
+                  <span class="button secondary disabled-link" aria-disabled="true">Code</span>
+                  <span class="button primary disabled-link" aria-disabled="true">Paper</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="research-divider section-band" aria-label="Projects">
+        <p class="eyebrow">Selected works</p>
+        <h2>PROJECTS</h2>
+      </section>
+
+      <section class="general-projects section-block" aria-label="Projects list">
+        <div class="paper-grid">
+          <article class="paper-card">
+            <div class="paper-image single-project-image">
+              <img src="assets/projects/stock-picker/stock-picker.jpg" alt="Stock Picker project interface preview" />
+            </div>
+            <div class="paper-copy">
+              <p class="project-kicker">Machine learning / finance</p>
+              <h3>Stock Picker</h3>
+              <p>
+                Designed a machine learning model to support stock selection using historical
+                market data, preprocessing, feature engineering, model training, and performance
+                validation against benchmarks.
+              </p>
+              <p>
+                The project used LSTM and ARIMA models to predict stock prices with stronger
+                accuracy and consistency.
+              </p>
+              <div class="paper-actions">
+                <a class="button secondary" href="https://github.com/A-Moazzam/Stock-Picker-">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="paper-card">
+            <div class="paper-image paper-gallery" data-carousel aria-label="4F imaging project gallery">
+              <img src="assets/projects/4f-imaging/1.jpg" alt="4F optical imaging lab setup" />
+              <img src="assets/projects/4f-imaging/2.jpg" alt="4F optical system diagram" />
+              <img src="assets/projects/4f-imaging/3.jpg" alt="USAF 1951 resolving power test target" />
+            </div>
+            <div class="paper-copy">
+              <p class="project-kicker">Optical imaging / edge detection</p>
+              <h3>Analyzing optical system for edge detection using a 4F system</h3>
+              <p>
+                Built and analyzed a 4F optical imaging system to study spatial filtering and
+                optical edge detection. The project explored how lens placement, Fourier-plane
+                filtering, and target structure affect the observed image.
+              </p>
+              <p>
+                The work connected physical optics with computational analysis to evaluate image
+                formation and edge-enhancement behavior in a controlled lab setup.
+              </p>
+              <div class="paper-actions">
+                <a class="button secondary" href="https://github.com/A-Moazzam/4F_Imaging">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="paper-card">
+            <div class="paper-image paper-gallery" data-carousel aria-label="Patch antenna project gallery">
+              <img src="assets/projects/patch-antenna/1.jpg" alt="Metamaterial patch antenna simulation geometry" />
+              <img src="assets/projects/patch-antenna/2.jpg" alt="Patch antenna 3D gain radiation pattern" />
+            </div>
+            <div class="paper-copy">
+              <p class="project-kicker">Metamaterials / antenna design</p>
+              <h3>Design an innovative patch antenna utilizing metamaterials</h3>
+              <p>
+                Investigated how metamaterials can enhance patch antenna performance for wireless
+                communication systems. The project developed a modified antenna structure and
+                evaluated how the added metamaterial features affected antenna behavior.
+              </p>
+              <p>
+                Simulations and analysis were used to study performance changes, validate the
+                design approach, and better understand the mechanisms behind the antenna response.
+              </p>
+            </div>
+          </article>
+
+          <article class="paper-card">
+            <div class="paper-image paper-gallery" data-carousel aria-label="Solar cell fabrication project gallery">
+              <img src="assets/projects/solar-cell/1.jpg" alt="Fabricated solar cell mounted in a sample case" />
+              <img src="assets/projects/solar-cell/2.jpg" alt="Solar cell wafer in cleanroom processing container" />
+              <img src="assets/projects/solar-cell/3.jpg" alt="Patterned silicon wafer held in cleanroom" />
+              <img src="assets/projects/solar-cell/4.jpg" alt="Patterned wafer close-up after fabrication step" />
+            </div>
+            <div class="paper-copy">
+              <p class="project-kicker">Microfabrication / solar cells</p>
+              <h3>Fabricate solar cell on a silicon wafer</h3>
+              <p>
+                Gained hands-on experience fabricating solar cells on silicon wafers using
+                microfabrication techniques in a cleanroom laboratory.
+              </p>
+              <p>
+                The project included photolithography, photoresist deposition, wafer development,
+                etching, and process training across the main fabrication steps.
+              </p>
+            </div>
+          </article>
+
+          <article class="paper-card">
+            <div class="paper-image paper-gallery" data-carousel aria-label="Nanofocusing project gallery">
+              <img src="assets/projects/nanofocusing/1.jpg" alt="Simulated Bessel plasmon polariton nanofocusing field pattern" />
+              <img src="assets/projects/nanofocusing/2.jpg" alt="Bessel-BPP focusing hyperbolic metamaterial layer diagram" />
+              <img src="assets/projects/nanofocusing/3.jpg" alt="Circularly polarized Bessel-type plasmon polariton simulation pattern" />
+            </div>
+            <div class="paper-copy">
+              <p class="project-kicker">COMSOL / hyperbolic metamaterials</p>
+              <h3>
+                Simulated nanofocusing of circularly polarized Bessel-type plasmon polaritons
+              </h3>
+              <p>
+                Reproduced and validated results from a research paper using COMSOL Multiphysics to
+                simulate nanofocusing of circularly polarized Bessel-type plasmon polaritons in
+                hyperbolic metamaterials.
+              </p>
+              <p>
+                The project strengthened my experience with numerical modeling, electromagnetic
+                field analysis, boundary-condition setup, and simulation workflows for structured
+                optical materials.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-topline">
+        <span>amoazzam.com</span>
+        <a href="index.html">Home</a>
+      </div>
+      <div class="social-links" aria-label="Social links">
+        <a href="https://www.linkedin.com/in/amoazzam/" aria-label="LinkedIn">
+          <span class="social-icon linkedin" aria-hidden="true">in</span>
+        </a>
+        <a href="https://github.com/A-Moazzam" aria-label="GitHub">
+          <span class="social-icon github" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M12 2C6.48 2 2 6.58 2 12.24c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.5v-1.9c-2.78.62-3.37-1.22-3.37-1.22-.45-1.2-1.1-1.52-1.1-1.52-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.56 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.9c.85 0 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.95.68 1.91v2.83c0 .28.18.6.69.5A10.13 10.13 0 0 0 22 12.24C22 6.58 17.52 2 12 2Z" />
+            </svg>
+          </span>
+        </a>
+        <a href="https://www.researchgate.net/profile/Adrian-Moazzam/research" aria-label="ResearchGate">
+          <span class="social-icon image-icon" aria-hidden="true">
+            <img src="assets/researchgate.png" alt="" />
+          </span>
+        </a>
+        <a href="https://scholar.google.com/citations?user=ncOx3NcAAAAJ&amp;hl=en&amp;oi=ao" aria-label="Google Scholar">
+          <span class="social-icon image-icon" aria-hidden="true">
+            <img src="assets/google-scholar.png" alt="" />
+          </span>
+        </a>
+      </div>
+      <p class="copyright">
+        © Copyright Amoazzam | ALL RIGHTS RESERVED BY Adrian Moazzam | contact@amoazzam.com
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

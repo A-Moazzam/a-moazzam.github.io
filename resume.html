@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume | Adrian A. Moazzam</title>
+    <meta
+      name="description"
+      content="Resume page for Adrian A. Moazzam, covering computational imaging, optics, research, teaching, and scientific software."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas class="field-canvas" id="fieldCanvas" aria-hidden="true"></canvas>
+
+    <header class="site-header" data-elevate>
+      <a class="brand" href="index.html" aria-label="Adrian Moazzam home">
+        <span class="brand-mark">AM</span>
+        <span class="brand-copy">Adrian Moazzam</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="resume.html" aria-current="page">Resume</a>
+        <a href="research-projects.html">Research &amp; Projects</a>
+        <div class="nav-dropdown">
+          <a class="nav-parent" href="personal-work.html">Personal Work</a>
+          <div class="nav-submenu" aria-label="Personal work pages">
+            <a href="buy-vs-invest.html">Buy vs Invest</a>
+          </div>
+        </div>
+      </nav>
+      <a class="header-action" href="contact.html">Contact</a>
+    </header>
+
+    <main class="page-main resume-page">
+      <section class="page-hero section-band">
+        <p class="eyebrow">Resume</p>
+        <h1>Professional journey across optics, imaging, and learning systems.</h1>
+        <p class="hero-lede">
+          A concise overview of my education, research, teaching, and technical work across
+          computational imaging, optical systems, scientific programming, and remote sensing.
+        </p>
+      </section>
+
+      <section class="section-block resume-summary" aria-label="Resume summary">
+        <div class="resume-snapshot-media">
+          <img
+            src="assets/resume-snapshot-poster.jpg"
+            alt="Adrian Moazzam presenting research at a poster session"
+          />
+        </div>
+        <div class="resume-snapshot-copy">
+          <p class="eyebrow">Snapshot</p>
+          <h2>A technical path built around seeing through distortion.</h2>
+          <p>
+            I earned my Ph.D. in Electrical Engineering from Michigan Technological University,
+            where my work blended optics, machine learning, and image processing to address
+            degraded imaging conditions. My research centers on optical compensation, turbulence
+            mitigation, Moire-based sensing, and computational pipelines for remote sensing and
+            visual measurement.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-block resume-section" aria-label="Education">
+        <div class="section-heading">
+          <p class="eyebrow">Education</p>
+          <h2>Academic training.</h2>
+        </div>
+        <div class="resume-list">
+          <article class="resume-item">
+            <div class="resume-item-head">
+              <div>
+                <h3>Doctor of Philosophy, Electrical Engineering</h3>
+                <p>Michigan Technological University, MI, US</p>
+              </div>
+              <time>August 2020 - December 2025</time>
+            </div>
+            <p>
+              Dissertation: <em>Enhanced Moire Technique for Remote Sensing of Ground Motion
+              Integrating Active Convolved Illumination and Deep Learning</em>.
+            </p>
+            <p>Advisors: Dr. Durdu Guney and Dr. Radwin Askari.</p>
+          </article>
+
+          <article class="resume-item">
+            <div class="resume-item-head">
+              <div>
+                <h3>Master of Science, Electrical and Computer Engineering</h3>
+                <p>Michigan Technological University, MI, US</p>
+              </div>
+              <time>August 2018 - May 2020</time>
+            </div>
+            <p>Relevant research: Electro-optics Antenna and PCB Fabrication.</p>
+          </article>
+
+          <article class="resume-item">
+            <div class="resume-item-head">
+              <div>
+                <h3>Bachelor of Science, Electrical Engineering</h3>
+                <p>Shiraz University of Technology, Shiraz, Fars, Iran</p>
+              </div>
+              <time>September 2013 - July 2017</time>
+            </div>
+            <p>
+              Thesis: <em>FPGA LAN Connection to Personal Computer by Wiznet W5300 Interface</em>.
+            </p>
+            <p>Advisor: Dr. Ebrahim Abiri.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block resume-section" aria-label="Experience">
+        <div class="section-heading">
+          <p class="eyebrow">Work experience and internships</p>
+          <h2>Engineering practice and technical training.</h2>
+        </div>
+        <div class="resume-list">
+          <article class="resume-item">
+            <div class="resume-item-head">
+              <div>
+                <h3>Electrical Engineer Intern</h3>
+                <p>HAMPA Energy Engineering &amp; Design Company (HEDCO), Shiraz, Fars, Iran</p>
+              </div>
+              <time>June 2016 - September 2016</time>
+            </div>
+            <p>Project: designed and evaluated control systems in gas and oil plants.</p>
+            <ul>
+              <li>Analyzed and evaluated equipment performance in terms of capability and safety.</li>
+            </ul>
+          </article>
+
+          <article class="resume-item">
+            <div class="resume-item-head">
+              <div>
+                <h3>Electrical Engineer Intern</h3>
+                <p>Zarin Saba, Shiraz, Fars, Iran</p>
+              </div>
+              <time>June 2015 - September 2015</time>
+            </div>
+            <p>Project: assembly of electrical control panels for industrial plants.</p>
+            <ul>
+              <li>Designed power control panels for industrial plants.</li>
+              <li>Selected and installed the required components on the control panels.</li>
+            </ul>
+          </article>
+
+          <article class="resume-item">
+            <div class="resume-item-head">
+              <div>
+                <h3>Electrical Engineering Technician</h3>
+                <p>Goushichi Mobile Devices Repairs Hub and Workshop, Shiraz, Fars, Iran</p>
+              </div>
+              <time>June 2013 - May 2015</time>
+            </div>
+            <p>
+              Served six months as an intern, six months as a teaching assistant, and over a year
+              and a half as a teacher.
+            </p>
+            <p>Project: advanced mobile device repair and technical training.</p>
+            <ul>
+              <li>
+                Diagnosed, repaired, and optimized the performance of over 100 mobile devices
+                monthly while maintaining high-quality service and customer satisfaction.
+              </li>
+              <li>
+                Conducted training programs and mentored more than 10 students in advanced mobile
+                repair techniques and diagnostic methodologies.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block resume-section" aria-label="Teaching experience">
+        <div class="section-heading">
+          <p class="eyebrow">Teaching experience</p>
+          <h2>Instruction across ten distinct subjects.</h2>
+          <p>Instructor and lab instructor experience with more than 300 students.</p>
+        </div>
+        <div class="resume-list compact">
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Instructor for Signals and Systems</h3><time>Summer 2022</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Teaching Assistant for Electronics</h3><time>Spring 2022</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Pinar.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Teaching Assistant for Laser Systems and Applications</h3><time>Fall 2021</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Guney.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Teaching Assistant for Electronics</h3><time>Fall 2021</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Bergstrom.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Teaching Assistant for Circuit 2</h3><time>Fall 2021</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Ten.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Instructor for Machine Learning</h3><time>Summer 2021</time></div>
+            <p>Summer Youth Program, MTU, Dr. Pinar.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Teaching Assistant for Linear Control Systems</h3><time>Spring 2021</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Burl.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Teaching Assistant for Non-linear Control Systems</h3><time>Spring 2021</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Burl.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>PCB Manufacturing and Fabrication Lab Contributor</h3><time>Spring 2019 - Spring 2020</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Middlebrook.</p>
+            <p>
+              Contributed to collaborative lab establishment and co-authored standard operating
+              procedures for printed circuit board manufacturing and fabrication.
+            </p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Teaching Assistant for Digital Logic</h3><time>Fall 2019</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Oberloier.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Teaching Assistant for Electronics</h3><time>Fall 2020</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Majdara.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Lab Assistant for Electronics</h3><time>Fall 2018</time></div>
+            <p>Department of Electrical and Computer Engineering, MTU, Dr. Pinar.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Instructor for Mobile Device Repair Workshops</h3><time>Fall - Spring 2014</time></div>
+            <p>Montazeran Mobile Repairing Hub, Shiraz, Iran.</p>
+          </article>
+          <article class="resume-item">
+            <div class="resume-item-head"><h3>Mentoring at Summer School Program</h3><time>Summer 2014</time></div>
+            <p>Department of Electrical Engineering, Sutech.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block resume-section" aria-label="Research experience">
+        <div class="section-heading">
+          <p class="eyebrow">Research experience</p>
+          <h2>Research roles in optics, imaging, and electronics.</h2>
+        </div>
+        <div class="resume-list">
+          <article class="resume-item">
+            <h3>Research Assistant</h3>
+            <p><strong>Department of Electrical and Computer Engineering, MTU</strong></p>
+            <p>Advisors: Dr. Guney and Dr. Askari.</p>
+            <ul>
+              <li>
+                Served as a lead researcher in the Guney and Askari Research Group, focusing on
+                advanced projects at the intersection of optics, image processing, and machine
+                learning.
+              </li>
+              <li>
+                Designed and implemented Active Convolved Illumination for seismic signal sensing
+                with displacement measurement precision within hundreds of micrometers over a 1 km
+                range.
+              </li>
+              <li>
+                Designed and implemented neural networks to enhance image quality, mitigating
+                atmospheric distortions and improving normalized cross-correlation by approximately
+                21%.
+              </li>
+              <li>
+                Developed and validated an experimental Moire apparatus for high-precision remote
+                monitoring of seismic activity.
+              </li>
+            </ul>
+          </article>
+          <article class="resume-item">
+            <h3>Research Assistant</h3>
+            <p><strong>Department of Electrical and Computer Engineering, MTU</strong>, Dr. Middlebrook.</p>
+            <ul>
+              <li>
+                Lead researcher in Middlebrook Lab, focusing on PCB fabrication lab development and
+                electro-optics antenna research.
+              </li>
+            </ul>
+          </article>
+          <article class="resume-item">
+            <h3>Research Assistant</h3>
+            <p><strong>Department of Electrical Engineering, Sutech</strong>, Dr. Abiri.</p>
+            <ul>
+              <li>Focused on FPGA board programming and electronic circuit design and optimization.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block resume-section" aria-label="Publications">
+        <div class="section-heading">
+          <p class="eyebrow">Publications</p>
+          <h2>Selected publications.</h2>
+        </div>
+        <div class="resume-list compact">
+          <article class="resume-item">
+            <h3>Active Convolved Illumination with Deep Transfer Learning for Complex Beam Transmission through Atmospheric Turbulence</h3>
+            <p>
+              Adrian A. Moazzam, Anindya Ghoshroy, Breeanne Heusdens, Durdu Guney,
+              Roohollah Askari, Journal of Electronic Imaging 35(3), 033005, 2026.
+            </p>
+          </article>
+          <article class="resume-item">
+            <h3>Remote Sensing of Dynamic Ground Motion via a Moire-Based Apparatus</h3>
+            <p>
+              Adrian A. Moazzam, Nantawat Srisapan, Gregory P. Waite, Durdu Guney,
+              Roohollah Askari, Remote Sensing 18.5, 718, 2026.
+            </p>
+          </article>
+          <article class="resume-item">
+            <h3>Remote Sensing of Seismic Signals via Enhanced Moire-Based Apparatus Integrated with Active Convolved Illumination</h3>
+            <p>
+              Adrian A. Moazzam, Anindya Ghoshroy, Durdu Guney, Roohollah Askari,
+              Remote Sensing 17.12, 2032, 2025.
+            </p>
+          </article>
+          <article class="resume-item">
+            <h3>Enhancing Complex Light Beam Propagation in Turbulent Atmosphere with Active Convolved Illumination</h3>
+            <p>
+              Anindya Ghoshroy, James Davis, Adrian A. Moazzam, Roohollah Askari, Durdu
+              Guney, ACS Photonics 11.11, 4541-4558, 2024.
+            </p>
+          </article>
+          <article class="resume-item">
+            <h3>A common method for simulating turbulent atmosphere for optical imaging</h3>
+            <p>Adrian A. Moazzam, Durdu Guney, 2026. Under submission.</p>
+          </article>
+        </div>
+        <div class="resume-actions">
+          <a class="button primary" href="research-projects.html">
+            <span>View research and projects</span>
+            <span class="button-icon" aria-hidden="true"></span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section-block resume-section resume-two-column" aria-label="Service and awards">
+        <article class="resume-card">
+          <span>Professional service and membership</span>
+          <h3>Community and professional engagement</h3>
+          <ul>
+            <li>Session Coordinator at AGU 2023 Conference, Seismology General Contribution session, San Francisco, CA, December 2023.</li>
+            <li>Treasurer, Member of Executive Board, Graduate Students Government (GSG), MTU, 2023-2024.</li>
+            <li>Chair of Ways and Means Committee, GSG, MTU, 2023-2024.</li>
+            <li>Board Member of Cultural Event Funds, MTU, 2023-2024.</li>
+            <li>ECE Department Representative, GSG, MTU, 2022-2023 and 2020-2021.</li>
+            <li>Executive Board Member, Iranian Community at Michigan Tech, MTU, 2019-2022.</li>
+            <li>Vice President and Head of Technical Committee, IPC &amp; Electronics Students Chapter, MTU, 2019-2021.</li>
+          </ul>
+        </article>
+        <article class="resume-card">
+          <span>Awards</span>
+          <h3>Recognition and honors</h3>
+          <ul>
+            <li>Dean's Finishing Fellowship Award, MTU, 2024.</li>
+            <li>National Science Foundation scholarship award, Development of Remote Sensing of Seismological Signals via Enhanced Moire Technique, September 2022 - August 2024.</li>
+            <li>Graduate Research Colloquium Poster Presentation, MTU, 2024.</li>
+            <li>3 Minutes Thesis Finalist, MTU, 2023.</li>
+            <li>Outstanding Graduate Student Teaching Award, MTU, 2020.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section-block resume-section" aria-label="Conferences and talks">
+        <div class="section-heading">
+          <p class="eyebrow">Conferences &amp; talks</p>
+          <h2>Presentations and invited technical communication.</h2>
+        </div>
+        <div class="resume-list compact">
+          <article class="resume-item">
+            <h3>Conferences</h3>
+            <ol class="resume-numbered">
+              <li>Adrian A. Moazzam, A. Ghoshroy, R. Askari, D. O. Guney, Active Convolved Illumination towards Enhanced Remote Sensing through a Turbulent Atmosphere, Graduate Research Colloquium, Michigan Technological University, 2024.</li>
+              <li>Adrian A. Moazzam, A. Ghoshroy, R. Askari, D. O. Guney, Remote Sensing through a Turbulent Atmosphere Enhanced by Active Convolved Illumination, AGU 2023, San Francisco, CA, 11-15 December 2023.</li>
+              <li>Adrian A. Moazzam, R. Askari, D. O. Guney, Remote Sensing of Seismological Signals via the Moire Technique Enhanced by ACI, 3 Minutes Thesis, Michigan Technological University, 2022.</li>
+              <li>Adrian A. Moazzam, Emerging Models in Robotics: Innovations and Future Directions, Robotics Conference, Shiraz University of Technology, 2014.</li>
+            </ol>
+          </article>
+          <article class="resume-item">
+            <h3>Talks &amp; presentations</h3>
+            <ol class="resume-numbered" start="5">
+              <li>Adrian A. Moazzam, A New Design of a Metamaterials-based Patch Antenna, Michigan Technological University, 2020.</li>
+              <li>Adrian A. Moazzam, Analyzing Optical System for Edge Detection Using 4F System, Michigan Technological University, 2020.</li>
+              <li>Adrian A. Moazzam, LASIK: An Optical Revolution in Biomedical Applications, Michigan Technological University, 2019.</li>
+              <li>Adrian A. Moazzam, A Comprehensive Review of Liquid Crystal Research: Historical Perspectives and Future Directions, Michigan Technological University, 2018.</li>
+              <li>Adrian A. Moazzam, Exploring Quantum Dot LEDs: Principles, Performance, and Prospects, Pasargad University, Shiraz, Iran, 2017.</li>
+              <li>Adrian A. Moazzam, A Comparative Review of the Technology Behind Floppy Disks and Hard Disk Drives, Shiraz University of Technology, Shiraz, Iran, 2016.</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-topline">
+        <span>amoazzam.com</span>
+        <a href="index.html">Home</a>
+      </div>
+      <div class="social-links" aria-label="Social links">
+        <a href="https://www.linkedin.com/in/amoazzam/" aria-label="LinkedIn">
+          <span class="social-icon linkedin" aria-hidden="true">in</span>
+        </a>
+        <a href="https://github.com/A-Moazzam" aria-label="GitHub">
+          <span class="social-icon github" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M12 2C6.48 2 2 6.58 2 12.24c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.5v-1.9c-2.78.62-3.37-1.22-3.37-1.22-.45-1.2-1.1-1.52-1.1-1.52-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.56 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.9c.85 0 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.95.68 1.91v2.83c0 .28.18.6.69.5A10.13 10.13 0 0 0 22 12.24C22 6.58 17.52 2 12 2Z" />
+            </svg>
+          </span>
+        </a>
+        <a href="https://www.researchgate.net/profile/Adrian-Moazzam/research" aria-label="ResearchGate">
+          <span class="social-icon image-icon" aria-hidden="true">
+            <img src="assets/researchgate.png" alt="" />
+          </span>
+        </a>
+        <a href="https://scholar.google.com/citations?user=ncOx3NcAAAAJ&amp;hl=en&amp;oi=ao" aria-label="Google Scholar">
+          <span class="social-icon image-icon" aria-hidden="true">
+            <img src="assets/google-scholar.png" alt="" />
+          </span>
+        </a>
+      </div>
+      <p class="copyright">
+        © Copyright Amoazzam | ALL RIGHTS RESERVED BY Adrian Moazzam | contact@amoazzam.com
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
