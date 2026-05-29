@@ -15,8 +15,25 @@
     <canvas class="field-canvas" id="fieldCanvas" aria-hidden="true"></canvas>
 
     <header class="site-header" data-elevate>
-      <!-- copy the same header/nav from buy-vs-invest.html -->
+      <a class="brand" href="index.html" aria-label="Adrian Moazzam home">
+        <span class="brand-mark">AM</span>
+        <span class="brand-copy">Adrian Moazzam</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="research-projects.html">Research &amp; Projects</a>
+        <div class="nav-dropdown">
+          <a class="nav-parent" href="personal-work.html" aria-current="page">Personal Work</a>
+          <div class="nav-submenu" aria-label="Personal work pages">
+            <a href="buy-vs-invest.html">Buy vs Invest</a>
+            <a href="3d-print-calc.html" aria-current="page">3D Print Calc</a>
+          </div>
+        </div>
+      </nav>
+      <a class="header-action" href="contact.html">Contact</a>
     </header>
+
 
     <main class="page-main">
       <section class="section-block model-frame-section" aria-label="3D print cost calculator">
