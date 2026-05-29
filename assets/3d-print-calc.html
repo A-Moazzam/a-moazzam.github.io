@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Print Cost Calculator</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172026;
+      --muted: #62727d;
+      --line: #d8e1e7;
+      --panel: #ffffff;
+      --soft: #f3f7f9;
+      --blue: #1769aa;
+      --blue-dark: #0f4f82;
+      --green: #1f7a4d;
+      --amber: #b05d00;
+      --shadow: 0 18px 50px rgba(23, 32, 38, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(23, 105, 170, 0.14), transparent 36%),
+        linear-gradient(315deg, rgba(31, 122, 77, 0.12), transparent 38%),
+        #eef4f6;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(310px, 0.7fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    header {
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    .panel,
+    .result-panel {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(216, 225, 231, 0.9);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .result-panel {
+      position: sticky;
+      top: 20px;
+      overflow: hidden;
+    }
+
+    .section {
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.04rem;
+      letter-spacing: 0;
+    }
+
+    .hint {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .field {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .field span {
+      flex: 0 0 auto;
+      padding: 0 12px;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-width: 0;
+      min-height: 48px;
+      border: 0;
+      padding: 0 12px;
+      color: var(--ink);
+      background: transparent;
+      font: inherit;
+      font-weight: 650;
+      outline: none;
+    }
+
+    input[type="number"] {
+      appearance: textfield;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      padding: 5px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .segmented button,
+    .utility-row button {
+      border: 0;
+      border-radius: 6px;
+      min-height: 42px;
+      padding: 0 12px;
+      color: var(--ink);
+      background: transparent;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .segmented button[aria-pressed="true"] {
+      color: #fff;
+      background: var(--blue);
+      box-shadow: 0 8px 18px rgba(23, 105, 170, 0.22);
+    }
+
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-top: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 750;
+    }
+
+    .switch {
+      position: relative;
+      width: 50px;
+      height: 28px;
+      border: 0;
+      border-radius: 999px;
+      background: #cbd8df;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(23, 32, 38, 0.24);
+      transition: transform 160ms ease;
+    }
+
+    .switch[aria-pressed="true"] {
+      background: var(--blue);
+    }
+
+    .switch[aria-pressed="true"]::after {
+      transform: translateX(22px);
+    }
+
+    .toggle-area {
+      display: none;
+      margin-top: 14px;
+    }
+
+    .toggle-area.is-active {
+      display: grid;
+    }
+
+    .utility-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .utility-row button {
+      min-width: 118px;
+      color: #fff;
+      background: var(--blue-dark);
+    }
+
+    .result-head {
+      padding: 24px;
+      color: #fff;
+      background: linear-gradient(135deg, #1769aa, #1f7a4d);
+    }
+
+    .result-head p {
+      margin: 0 0 8px;
+      opacity: 0.86;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+    }
+
+    .total {
+      font-size: clamp(2.7rem, 7vw, 4.6rem);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .result-body {
+      padding: 18px 24px 24px;
+    }
+
+    .line-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .line-item strong {
+      color: var(--ink);
+      text-align: right;
+    }
+
+    .line-item.final {
+      color: var(--ink);
+      font-size: 1.05rem;
+      border-bottom: 0;
+    }
+
+    .note {
+      margin: 18px 0 0;
+      padding: 12px;
+      border-left: 4px solid var(--amber);
+      background: #fff7ed;
+      color: #75510f;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .mini-chart {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .bar {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr) 72px;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .track {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: var(--soft);
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: var(--blue);
+      transition: width 180ms ease;
+    }
+
+    .fill.electric {
+      background: var(--green);
+    }
+
+    .error {
+      display: none;
+      margin-top: 10px;
+      color: #9d1c1c;
+      font-weight: 750;
+      font-size: 0.88rem;
+    }
+
+    .error.is-visible {
+      display: block;
+    }
+
+    .tab-note {
+      margin: 12px 0 0;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--soft);
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .tab-note + .grid {
+      margin-top: 12px;
+    }
+
+    @media (max-width: 860px) {
+      main {
+        width: min(100% - 24px, 680px);
+        padding: 20px 0;
+      }
+
+      .app-shell,
+      .grid,
+      .utility-row {
+        grid-template-columns: 1fr;
+      }
+
+      .result-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .panel,
+      .result-head,
+      .result-body {
+        padding: 16px;
+      }
+
+      .section-title {
+        display: grid;
+      }
+
+      .bar {
+        grid-template-columns: 78px minmax(0, 1fr) 62px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>3D Print Cost Calculator</h1>
+      <p class="lede">Estimate what a print really costs from filament, spool math, print time, printer power, electricity rate, and optional markup.</p>
+    </header>
+
+    <div class="app-shell">
+      <form class="panel" id="calculator">
+        <section class="section">
+          <div class="section-title">
+            <h2>Filament</h2>
+            <p class="hint">Use slicer grams, or weigh the spool before and after.</p>
+          </div>
+
+          <div class="segmented" aria-label="Filament measurement mode">
+            <button type="button" id="modeGrams" aria-pressed="true">Known grams</button>
+            <button type="button" id="modeSpool" aria-pressed="false">Spool weight</button>
+          </div>
+
+          <div class="toggle-area is-active" id="gramsFields">
+            <div class="grid">
+              <label>
+                Filament used
+                <div class="field">
+                  <input id="usedGrams" type="number" inputmode="decimal" min="0" step="0.1" value="85">
+                  <span>g</span>
+                </div>
+              </label>
+              <label>
+                Purchased filament
+                <div class="field">
+                  <input id="rollGrams" type="number" inputmode="decimal" min="1" step="1" value="1000">
+                  <span>g</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="toggle-area" id="spoolFields">
+            <p class="tab-note">Use this when the roll weight includes the empty spool. The app subtracts the empty spool weight to find the real filament cost per gram.</p>
+            <div class="switch-row">
+              <span id="spoolUsageLabel">Go with spool before and after print weight</span>
+              <button type="button" class="switch" id="spoolUsageToggle" aria-pressed="false" aria-label="Use spool before and after weights"></button>
+            </div>
+            <div class="grid">
+              <label id="spoolUsedField">
+                Filament used
+                <div class="field">
+                  <input id="spoolUsedGrams" type="number" inputmode="decimal" min="0" step="0.1" value="85">
+                  <span>g</span>
+                </div>
+              </label>
+              <label class="spool-delta-field">
+                Spool before print
+                <div class="field">
+                  <input id="spoolBefore" type="number" inputmode="decimal" min="0" step="0.1" value="1000">
+                  <span>g</span>
+                </div>
+              </label>
+              <label class="spool-delta-field">
+                Spool after print
+                <div class="field">
+                  <input id="spoolAfter" type="number" inputmode="decimal" min="0" step="0.1" value="915">
+                  <span>g</span>
+                </div>
+              </label>
+              <label>
+                Empty spool weight
+                <div class="field">
+                  <input id="emptySpool" type="number" inputmode="decimal" min="0" step="1" value="140">
+                  <span>g</span>
+                </div>
+              </label>
+              <label>
+                Purchased spool weight
+                <div class="field">
+                  <input id="rollGramsSpool" type="number" inputmode="decimal" min="1" step="1" value="1000">
+                  <span>g</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="grid" style="margin-top: 14px;">
+            <label>
+              Filament purchase price
+              <div class="field">
+                <span>$</span>
+                <input id="rollPrice" type="number" inputmode="decimal" min="0" step="0.01" value="22.99">
+              </div>
+            </label>
+            <label>
+              Waste / failed print allowance
+              <div class="field">
+                <input id="wastePercent" type="number" inputmode="decimal" min="0" step="0.1" value="5">
+                <span>%</span>
+              </div>
+            </label>
+          </div>
+          <p class="error" id="spoolError">Spool before weight must be higher than after weight.</p>
+          <p class="error" id="usableSpoolError">Purchased spool weight must be higher than the empty spool weight.</p>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <h2>Print Time And Power</h2>
+            <p class="hint">Use your slicer time and printer wattage. A typical desktop printer is 80-180 W after heating.</p>
+          </div>
+          <div class="grid">
+            <label>
+              Hours
+              <div class="field">
+                <input id="printHours" type="number" inputmode="decimal" min="0" step="1" value="6">
+                <span>h</span>
+              </div>
+            </label>
+            <label>
+              Minutes
+              <div class="field">
+                <input id="printMinutes" type="number" inputmode="decimal" min="0" max="59" step="1" value="30">
+                <span>m</span>
+              </div>
+            </label>
+            <label>
+              Printer average power
+              <div class="field">
+                <input id="printerWatts" type="number" inputmode="decimal" min="0" step="1" value="120">
+                <span>W</span>
+              </div>
+            </label>
+            <label>
+              Setup / cleanup fee
+              <div class="field">
+                <span>$</span>
+                <input id="setupFee" type="number" inputmode="decimal" min="0" step="0.01" value="0">
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <h2>Electricity</h2>
+            <p class="hint">Enter your exact bill rate, or estimate from ZIP using U.S. regional averages.</p>
+          </div>
+          <div class="utility-row">
+            <label>
+              ZIP code
+              <div class="field">
+                <input id="zipCode" type="text" inputmode="numeric" maxlength="5" value="90210" aria-describedby="rateNote">
+              </div>
+            </label>
+            <button type="button" id="estimateRate">Estimate rate</button>
+          </div>
+          <div class="grid" style="margin-top: 14px;">
+            <label>
+              Electricity price
+              <div class="field">
+                <span>$</span>
+                <input id="electricRate" type="number" inputmode="decimal" min="0" step="0.001" value="0.32">
+                <span>/kWh</span>
+              </div>
+            </label>
+            <label>
+              Profit / markup
+              <div class="field">
+                <input id="markupPercent" type="number" inputmode="decimal" min="0" step="0.1" value="0">
+                <span>%</span>
+              </div>
+            </label>
+          </div>
+          <p class="hint" id="rateNote" style="margin-top: 10px;">Exact electricity cost varies by utility plan, time of use, and fees.</p>
+        </section>
+      </form>
+
+      <aside class="result-panel" aria-live="polite">
+        <div class="result-head">
+          <p>Estimated final cost</p>
+          <div class="total" id="finalCost">$0.00</div>
+        </div>
+        <div class="result-body">
+          <div class="line-item">
+            <span>Filament used</span>
+            <strong id="filamentUsed">0 g</strong>
+          </div>
+          <div class="line-item">
+            <span>Filament cost</span>
+            <strong id="filamentCost">$0.00</strong>
+          </div>
+          <div class="line-item">
+            <span>Electricity used</span>
+            <strong id="kwhUsed">0.00 kWh</strong>
+          </div>
+          <div class="line-item">
+            <span>Electricity cost</span>
+            <strong id="electricCost">$0.00</strong>
+          </div>
+          <div class="line-item">
+            <span>Waste allowance</span>
+            <strong id="wasteCost">$0.00</strong>
+          </div>
+          <div class="line-item">
+            <span>Setup / cleanup</span>
+            <strong id="setupCost">$0.00</strong>
+          </div>
+          <div class="line-item">
+            <span>Markup</span>
+            <strong id="markupCost">$0.00</strong>
+          </div>
+          <div class="line-item final">
+            <span>Cost per gram</span>
+            <strong id="costPerGram">$0.00/g</strong>
+          </div>
+
+          <div class="mini-chart" aria-hidden="true">
+            <div class="bar">
+              <span>Material</span>
+              <div class="track"><div class="fill" id="materialBar"></div></div>
+              <strong id="materialShare">0%</strong>
+            </div>
+            <div class="bar">
+              <span>Power</span>
+              <div class="track"><div class="fill electric" id="electricBar"></div></div>
+              <strong id="electricShare">0%</strong>
+            </div>
+          </div>
+
+          <p class="note" id="summaryNote">Change any number and the total updates immediately.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const fields = {
+      usedGrams: document.querySelector("#usedGrams"),
+      rollGrams: document.querySelector("#rollGrams"),
+      spoolUsedGrams: document.querySelector("#spoolUsedGrams"),
+      spoolBefore: document.querySelector("#spoolBefore"),
+      spoolAfter: document.querySelector("#spoolAfter"),
+      emptySpool: document.querySelector("#emptySpool"),
+      rollGramsSpool: document.querySelector("#rollGramsSpool"),
+      rollPrice: document.querySelector("#rollPrice"),
+      wastePercent: document.querySelector("#wastePercent"),
+      printHours: document.querySelector("#printHours"),
+      printMinutes: document.querySelector("#printMinutes"),
+      printerWatts: document.querySelector("#printerWatts"),
+      setupFee: document.querySelector("#setupFee"),
+      zipCode: document.querySelector("#zipCode"),
+      electricRate: document.querySelector("#electricRate"),
+      markupPercent: document.querySelector("#markupPercent")
+    };
+
+    const output = {
+      finalCost: document.querySelector("#finalCost"),
+      filamentUsed: document.querySelector("#filamentUsed"),
+      filamentCost: document.querySelector("#filamentCost"),
+      kwhUsed: document.querySelector("#kwhUsed"),
+      electricCost: document.querySelector("#electricCost"),
+      wasteCost: document.querySelector("#wasteCost"),
+      setupCost: document.querySelector("#setupCost"),
+      markupCost: document.querySelector("#markupCost"),
+      costPerGram: document.querySelector("#costPerGram"),
+      materialBar: document.querySelector("#materialBar"),
+      electricBar: document.querySelector("#electricBar"),
+      materialShare: document.querySelector("#materialShare"),
+      electricShare: document.querySelector("#electricShare"),
+      summaryNote: document.querySelector("#summaryNote")
+    };
+
+    const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+    const number = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
+    let mode = "grams";
+    let useSpoolDelta = false;
+
+    const regionalRates = [
+      { pattern: /^[89]/, rate: 0.29, label: "western U.S. average" },
+      { pattern: /^[01]/, rate: 0.27, label: "northeastern U.S. average" },
+      { pattern: /^[23]/, rate: 0.16, label: "southeastern U.S. average" },
+      { pattern: /^[4]/, rate: 0.18, label: "midwest U.S. average" },
+      { pattern: /^[56]/, rate: 0.17, label: "central U.S. average" },
+      { pattern: /^[7]/, rate: 0.15, label: "southern U.S. average" }
+    ];
+
+    function value(id) {
+      return Math.max(0, Number.parseFloat(fields[id].value) || 0);
+    }
+
+    function setMode(nextMode) {
+      mode = nextMode;
+      document.querySelector("#modeGrams").setAttribute("aria-pressed", String(mode === "grams"));
+      document.querySelector("#modeSpool").setAttribute("aria-pressed", String(mode === "spool"));
+      document.querySelector("#gramsFields").classList.toggle("is-active", mode === "grams");
+      document.querySelector("#spoolFields").classList.toggle("is-active", mode === "spool");
+      calculate();
+    }
+
+    function estimateElectricRate() {
+      const zip = fields.zipCode.value.trim();
+      const match = regionalRates.find((item) => item.pattern.test(zip));
+      const estimate = match || { rate: 0.18, label: "U.S. average" };
+      fields.electricRate.value = estimate.rate.toFixed(3);
+      document.querySelector("#rateNote").textContent = `Estimated from ${estimate.label}. Use your utility bill for the most accurate rate.`;
+      calculate();
+    }
+
+    function setSpoolUsageMode(useDelta) {
+      useSpoolDelta = useDelta;
+      document.querySelector("#spoolUsageToggle").setAttribute("aria-pressed", String(useSpoolDelta));
+      document.querySelector("#spoolUsageLabel").textContent = "Go with spool before and after print weight";
+      document.querySelector("#spoolUsedField").style.display = useSpoolDelta ? "none" : "grid";
+      document.querySelectorAll(".spool-delta-field").forEach((field) => {
+        field.style.display = useSpoolDelta ? "grid" : "none";
+      });
+      calculate();
+    }
+
+    function calculate() {
+      const spoolUsed = value("spoolBefore") - value("spoolAfter");
+      const usedGrams = mode === "spool" ? (useSpoolDelta ? Math.max(0, spoolUsed) : value("spoolUsedGrams")) : value("usedGrams");
+      const purchasedSpoolWeight = value("rollGramsSpool");
+      const emptySpoolWeight = value("emptySpool");
+      const usableSpoolFilament = Math.max(0, purchasedSpoolWeight - emptySpoolWeight);
+      const rollGrams = mode === "spool" ? usableSpoolFilament : value("rollGrams");
+      const rollPrice = value("rollPrice");
+      const pricePerGram = rollGrams > 0 ? rollPrice / rollGrams : 0;
+      const filamentCost = usedGrams * pricePerGram;
+      const wasteCost = filamentCost * (value("wastePercent") / 100);
+      const hours = value("printHours") + (value("printMinutes") / 60);
+      const kwh = (value("printerWatts") / 1000) * hours;
+      const electricCost = kwh * value("electricRate");
+      const setupCost = value("setupFee");
+      const subtotal = filamentCost + wasteCost + electricCost + setupCost;
+      const markupCost = subtotal * (value("markupPercent") / 100);
+      const finalCost = subtotal + markupCost;
+      const materialTotal = filamentCost + wasteCost;
+      const materialPercent = finalCost > 0 ? (materialTotal / finalCost) * 100 : 0;
+      const electricPercent = finalCost > 0 ? (electricCost / finalCost) * 100 : 0;
+
+      document.querySelector("#spoolError").classList.toggle("is-visible", mode === "spool" && useSpoolDelta && spoolUsed < 0);
+      document.querySelector("#usableSpoolError").classList.toggle("is-visible", mode === "spool" && purchasedSpoolWeight <= emptySpoolWeight);
+
+      output.finalCost.textContent = money.format(finalCost);
+      output.filamentUsed.textContent = `${number.format(usedGrams)} g`;
+      output.filamentCost.textContent = money.format(filamentCost);
+      output.kwhUsed.textContent = `${number.format(kwh)} kWh`;
+      output.electricCost.textContent = money.format(electricCost);
+      output.wasteCost.textContent = money.format(wasteCost);
+      output.setupCost.textContent = money.format(setupCost);
+      output.markupCost.textContent = money.format(markupCost);
+      output.costPerGram.textContent = usedGrams > 0 ? `${money.format(finalCost / usedGrams)}/g` : "$0.00/g";
+      output.materialBar.style.width = `${Math.min(100, materialPercent)}%`;
+      output.electricBar.style.width = `${Math.min(100, electricPercent)}%`;
+      output.materialShare.textContent = `${Math.round(materialPercent)}%`;
+      output.electricShare.textContent = `${Math.round(electricPercent)}%`;
+      output.summaryNote.textContent = `At ${number.format(hours)} hours and ${number.format(value("printerWatts"))} W, this print uses about ${number.format(kwh)} kWh.`;
+    }
+
+    document.querySelector("#modeGrams").addEventListener("click", () => setMode("grams"));
+    document.querySelector("#modeSpool").addEventListener("click", () => setMode("spool"));
+    document.querySelector("#spoolUsageToggle").addEventListener("click", () => setSpoolUsageMode(!useSpoolDelta));
+    document.querySelector("#estimateRate").addEventListener("click", estimateElectricRate);
+    document.querySelectorAll("input").forEach((input) => input.addEventListener("input", calculate));
+    setSpoolUsageMode(false);
+    calculate();
+  </script>
+</body>
+</html>
